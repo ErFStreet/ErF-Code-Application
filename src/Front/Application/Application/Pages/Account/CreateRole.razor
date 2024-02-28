@@ -1,0 +1,69 @@
+﻿@page "/CreateRole"
+
+<PageTitle>ایجاد نقش</PageTitle>
+
+@inject IJSRuntime _jsRunTime
+
+@inject HttpClient http
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="user/css/bootstrap4-rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="user/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="user/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="user/css/style.css" />
+
+</head>
+<body class="rtl">
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <h4 class="text-primary text-center">ایجاد نقش</h4>
+
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="text" @bind="ViewModel!.RoleName" placeholder="نام نقش">
+                    <span class="text-center text-danger"></span>
+                </div>
+
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button @onclick="CreateRoleAsync" class="login100-form-btn">ایجاد</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _jsRunTime.InvokeAsync<IJSObjectReference>("import", "./user/js/jquery-3.1.1.min.js");
+
+            await _jsRunTime.InvokeAsync<IJSObjectReference>("import", "./user/js/bootstrap.min.js");
+
+            await _jsRunTime.InvokeAsync<IJSObjectReference>("import", "./user/js/scripts.js");
+        }
+    }
+
+    private CreateRoleViewModel? ViewModel { get; set; }
+
+    private async Task CreateRoleAsync()
+    {
+        
+    }
+}
