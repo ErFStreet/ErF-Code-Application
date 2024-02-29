@@ -1,0 +1,20 @@
+﻿@page "/Roles"
+<PageTitle>نقش ها</PageTitle>
+
+<table class="table">
+    <tr>
+        <th>شناسه</th>
+        <th>نام نقش</th>
+    </tr>
+    @foreach(var role in RoleList!)
+    {
+        <tr>
+            <td>@role.Id</td>
+
+            <td>@role.RoleName</td>
+        </tr>
+    }
+</table>
+
+
+

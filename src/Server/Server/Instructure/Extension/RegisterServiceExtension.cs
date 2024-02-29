@@ -1,5 +1,6 @@
 ﻿using Data.Instructure;
 using Domain.Instructure.Account;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.Instructure.Extension;
 
@@ -23,10 +24,24 @@ public static class RegisterServiceExtension
 
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
+        //***** Add Cors *****\\
+
+        services.AddCors(options =>
+        {
+            options.AddPolicy("Cors",
+                builder =>
+                {
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
+
         //***** Add Database *****\\
 
         services.AddDbContext<DatabaseContext>
             (option => option.UseSqlServer(
-                "Data Source=.;Initial Catalog=ErF-APP;Integrated Security=true; TrustServerCertificate=True"));
+                connectionString: configuration.GetSection("DatabaseSettings")["ConnectionString"]));
     }
 }

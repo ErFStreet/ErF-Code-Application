@@ -1,6 +1,6 @@
 ﻿namespace Data.Repositories;
 
-public class Repository<TEntity> where TEntity : class, IRepository<TEntity>
+public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {
     private readonly DatabaseContext databaseContext;
 
@@ -30,11 +30,11 @@ public class Repository<TEntity> where TEntity : class, IRepository<TEntity>
             ;
     }
 
-    public async Task<List<TEntity>> GetAll()
+    public IQueryable<TEntity> GetAll()
     {
         var result =
-            await databaseContext.Set<TEntity>()
-            .ToListAsync()
+             databaseContext.Set<TEntity>()
+            .AsQueryable()
             ;
 
         return result;

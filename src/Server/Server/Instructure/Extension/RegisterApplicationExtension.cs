@@ -13,6 +13,8 @@ public static class RegisterAppExtension
             app.UseSwaggerUI();
         }
 
+        app.UseCors("Cors");
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();

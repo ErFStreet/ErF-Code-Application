@@ -1,7 +1,7 @@
 ﻿namespace Server.Instructure;
 
 [ApiController]
-[Produces("application/json")]
+[ApiVersion("1.0")]
 [Route("api/[controller]")]
 public class BaseController : ControllerBase
 {

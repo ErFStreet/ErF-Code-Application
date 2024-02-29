@@ -1,19 +1,20 @@
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+namespace Application;
 
-namespace Application
+public class Program
 {
-    public class Program
+    public static async Task Main(string[] args)
     {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
-            builder.RootComponents.Add<HeadOutlet>("head::after");
+        //***** Create App *****\\
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-            await builder.Build().RunAsync();
-        }
+        //***** Register App *****\\
+
+        builder.RegisterApplication();
+
+
+        //***** Run App *****\\
+
+        await builder.Build().RunAsync();
     }
 }

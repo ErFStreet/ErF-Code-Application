@@ -1,4 +1,6 @@
-﻿namespace Service.Services;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Service.Services;
 
 public class RoleService : IRoleService
 {
@@ -15,5 +17,19 @@ public class RoleService : IRoleService
             new Role(roleName: viewModel.RoleName);
 
         await repository.CreateAsync(role);
+    }
+
+    public async Task<List<ListRoleViewModel>> GetRolesAsync()
+    {
+        var result =
+            await repository.GetAll()
+            .Select(current => new ListRoleViewModel
+            {
+                Id = current.Id,
+                RoleName = current.RoleName,
+            })
+            .ToListAsync();
+
+        return result;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Server.Controllers;
 
-public partial class AccountController : BaseController
+public class AccountController : BaseController
 {
     private readonly IRoleService roleService;
 
@@ -13,33 +13,44 @@ public partial class AccountController : BaseController
         this.unitOfWork = unitOfWork;
     }
 
+    [EnableCors("Cors")]
     [HttpPost("CreateRole")]
-    public async Task<IActionResult> CreateRole([FromBody] CreateRoleViewModel viewModel)
+    public async Task<IActionResult> CreateRole(CreateRoleViewModel viewModel)
     {
         await roleService.CreateAsync(viewModel);
 
         var result =
             await unitOfWork.SaveChangesAsync();
 
-        object apiResult;
+        object response;
 
         if (result)
         {
-            apiResult = new
+            response = new
             {
                 Message = "Successfuly Created !",
                 StatusCode = 200,
             };
 
-            return Ok(apiResult);
+            return Ok(response);
         }
 
-        apiResult = new
+        response = new
         {
             Message = "Problem Try Again !",
             StatusCode = 404,
         };
 
-        return BadRequest(apiResult);
+        return BadRequest(response);
+    }
+
+    [EnableCors("Cors")]
+    [HttpGet("Roles")]
+    public async Task<IActionResult> Roles()
+    {
+        var response =
+            await roleService.GetRolesAsync();
+
+        return Ok(response);
     }
 }

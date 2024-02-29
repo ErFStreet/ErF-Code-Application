@@ -9,4 +9,4 @@ global using Service.Services;
 global using Domain.ViewModels.Role;
 global using Server.Instructure;
 global using Data.Contracts.Base;
-
+global using Microsoft.AspNetCore.Cors;

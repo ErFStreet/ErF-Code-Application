@@ -1,55 +1,6 @@
 ﻿@inject IJSRuntime _jsRunTime;
 
 <body>
-    <div class="sidemenu-wrapper sidemenu-info d-none d-lg-block">
-        <div class="sidemenu-content">
-            <div class="widget">
-                <h3 class="widget_title">
-                    تماس با من
-                </h3>
-                <div class="ot-widget-contact">
-                    <div class="info-box">
-                        <div class="info-box_icon">
-                            <i class="fas fa-phone">
-                            </i>
-                        </div>
-                        <p class="info-box_text">
-                            <a class="info-box_link" href="tel:+2352569321586">
-                                98-9305172457+
-                            </a>
-                            <a class="info-box_link" href="tel:+2352569326254">
-                                98-9305224895+
-                            </a>
-                        </p>
-                    </div>
-                    <div class="info-box">
-                        <div class="info-box_icon">
-                            <i class="fas fa-envelope">
-                            </i>
-                        </div>
-                        <p class="info-box_text">
-                            ErfanEdalatiBu@gmail.com
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="widget newsletter-widget">
-                <h3 class="widget_title">
-                    خبرنامه
-                </h3>
-                <p class="footer-text">
-                    برای دریافت اخبار به روز در مورد من ثبت نام کنید
-                </p>
-                <form class="newsletter-form">
-                    <input class="form-control" placeholder="ایمیل را وارد کنید" required="" type="email" />
-                    <button class="ot-btn" type="submit">
-                        اشتراک
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="ot-menu-wrapper">
         <div class="ot-menu-area text-center">
             <button class="ot-menu-toggle">
@@ -61,42 +12,19 @@
                     <img alt="ErF" width="100px" src="assets/img/logo-no-background.png" />
                 </a>
             </div>
+
             <div class="ot-mobile-menu">
                 <ul>
                     <li>
-                        <a style="font-weight:bold" href="about.html">
-                            صفحه اصلی
-                        </a>
+                        <a style="font-weight:bold" href="/">خانه</a>
                     </li>
 
                     <li>
-                        <a style="font-weight:bold" href="about.html">
-                            درباره من
-                        </a>
+                        <a style="font-weight:bold" href="/CreateRole">ایجاد نقش</a>
                     </li>
 
                     <li>
-                        <a style="font-weight:bold"  href="about.html">
-                            موسیقی های مورد علاقه من
-                        </a>
-                    </li>
-
-                    <li>
-                        <a style="font-weight:bold" href="about.html">
-                            رزومه من
-                        </a>
-                    </li>
-
-                    <li>
-                        <a style="font-weight:bold" href="about.html">
-                            همکاری های من
-                        </a>
-                    </li>
-
-                    <li>
-                        <a style="font-weight:bold" href="about.html">
-                            تیم من
-                        </a>
+                        <a style="font-weight:bold" href="/Roles">نقش ها</a>
                     </li>
                 </ul>
                 <a class="btn btn-success" href="about.html">
@@ -135,13 +63,13 @@
                     <div class="col-auto">
                         <div class="social-links">
 
-                            
+
                             <a href="https://github.com/ErFStreet">
                                 <i class="fab fa-github">
                                 </i>
                             </a>
 
-                          
+
                             <a href="https://t.me/Erfann_Edalati">
                                 <i class="fab fa-telegram">
                                 </i>
@@ -165,40 +93,17 @@
                         <div class="col-auto ms-auto">
                             <nav class="main-menu d-none d-lg-inline-block">
                                 <ul>
+
                                     <li>
-                                        <a style="font-weight:bold" href="about.html">
-                                            صفحه اصلی
-                                        </a>
+                                        <a style="font-weight:bold" href="/">خانه</a>
                                     </li>
 
                                     <li>
-                                        <a style="font-weight:bold" href="about.html">
-                                            درباره من
-                                        </a>
+                                        <a style="font-weight:bold" href="/CreateRole">ایجاد نقش</a>
                                     </li>
 
                                     <li>
-                                        <a style="font-weight:bold" href="about.html">
-                                            موسیقی های مورد علاقه من
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a style="font-weight:bold" href="about.html">
-                                            رزومه من
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a style="font-weight:bold" href="about.html">
-                                            همکاری های من
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a style="font-weight:bold" href="about.html">
-                                            تیم من
-                                        </a>
+                                        <a style="font-weight:bold" href="/Roles">نقش ها</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -215,7 +120,7 @@
 </body>
 
 
-@code{
+@code {
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
