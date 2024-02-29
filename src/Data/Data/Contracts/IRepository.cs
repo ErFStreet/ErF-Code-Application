@@ -8,5 +8,7 @@ public interface IRepository<TEntity>
 
     void Remove(TEntity entity);
 
+    Task<TEntity?> GetByIdAsync(int id);
+
     IQueryable<TEntity> GetAll();
 }

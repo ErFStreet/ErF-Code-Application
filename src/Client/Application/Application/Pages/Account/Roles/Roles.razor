@@ -5,16 +5,18 @@
     <tr>
         <th>شناسه</th>
         <th>نام نقش</th>
+        <th>ابزار</th>
     </tr>
-    @foreach(var role in RoleList!)
+    @foreach (var role in Response!.Value!)
     {
         <tr>
             <td>@role.Id</td>
 
             <td>@role.RoleName</td>
+
+            <td><button class="btn btn-danger" @onclick="()=> Remove(id:role.Id)" type="button">حذف</button></td>
         </tr>
     }
 </table>
-
 
 

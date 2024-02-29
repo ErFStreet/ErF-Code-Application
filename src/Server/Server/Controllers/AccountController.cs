@@ -1,56 +1,104 @@
 ﻿namespace Server.Controllers;
 
+[EnableCors("Cors")]
 public class AccountController : BaseController
 {
+    #region Fields
     private readonly IRoleService roleService;
 
     private readonly IUnitOfWork unitOfWork;
+    #endregion /Fields
 
+    #region Constructure
     public AccountController(IRoleService roleService, IUnitOfWork unitOfWork)
     {
         this.roleService = roleService;
 
         this.unitOfWork = unitOfWork;
     }
+    #endregion /Constructure
 
-    [EnableCors("Cors")]
+    #region Post
     [HttpPost("CreateRole")]
-    public async Task<IActionResult> CreateRole(CreateRoleViewModel viewModel)
+    public async Task<ActionResult<Response>> CreateRole(CreateRoleViewModel viewModel)
     {
+        var response = 
+            new Response();
+
         await roleService.CreateAsync(viewModel);
 
         var result =
             await unitOfWork.SaveChangesAsync();
 
-        object response;
 
         if (result)
         {
-            response = new
-            {
-                Message = "Successfuly Created !",
-                StatusCode = 200,
-            };
+            response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.Success);
 
-            return Ok(response);
+            response.AddMessage(message: ResponseMessages.Success);
+
+            return response;
         }
 
-        response = new
-        {
-            Message = "Problem Try Again !",
-            StatusCode = 404,
-        };
+        response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.ServerProblem);
 
-        return BadRequest(response);
+        response.AddMessage(message: ResponseMessages.ServerError);
+
+        return response;
     }
 
-    [EnableCors("Cors")]
-    [HttpGet("Roles")]
-    public async Task<IActionResult> Roles()
+    [HttpGet("RemoveRole")]
+    public async Task<ActionResult<Response>> Remove(int id)
     {
-        var response =
+        var respone =
+            new Response();
+
+        if (id != 0)
+        {
+            await roleService.DeleteAsync(id: id);
+
+            var result =
+                await unitOfWork.SaveChangesAsync();
+
+            if (result)
+            {
+                respone.ChangeStatusCode(HttpStatusCodeEnum.Success);
+
+                respone.AddMessage(message: ResponseMessages.Success);
+
+                return respone;
+            }
+
+            respone.ChangeStatusCode(HttpStatusCodeEnum.ServerProblem);
+
+            respone.AddMessage(message: ResponseMessages.ServerError);
+
+            return respone;
+        }
+
+        respone.ChangeStatusCode(HttpStatusCodeEnum.BadRequest);
+
+        respone.AddMessage(message: ResponseMessages.BadRequest);
+
+        return respone;
+    }
+    #endregion /Post
+
+    #region Get
+    [HttpGet("Roles")]
+    public async Task<ActionResult<Result<List<ListRoleViewModel>>>> Roles()
+    {
+        var result = 
+            new Result<List<ListRoleViewModel>>();
+
+        result.Value =
             await roleService.GetRolesAsync();
 
-        return Ok(response);
+        result.ChangeStatusCode(HttpStatusCodeEnum.Success);
+
+        result.AddMessage(ResponseMessages.Success);
+
+        return result;
     }
+    #endregion /Get
 }

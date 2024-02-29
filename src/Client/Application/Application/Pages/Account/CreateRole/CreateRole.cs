@@ -1,4 +1,6 @@
-﻿namespace Application.Pages.Account.CreateRole;
+﻿using System.Net;
+
+namespace Application.Pages.Account.CreateRole;
 
 public partial class CreateRole
 {
@@ -27,6 +29,11 @@ public partial class CreateRole
         var response =
              await httpClient.PostAsJsonAsync("api/Account/CreateRole", viewModel);
 
-        var result = response.StatusCode;
+        var statusCode = response.StatusCode;
+
+        if(statusCode == HttpStatusCode.OK)
+        {
+            navigationManager.NavigateTo("/Roles");
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Application.Instructure.Extension;
+﻿namespace Application.Instructure.Extension;
 
 public static class RegisterApplicationExtension
 {

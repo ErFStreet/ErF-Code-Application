@@ -30,6 +30,15 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
             ;
     }
 
+    public async Task<TEntity?> GetByIdAsync(int id)
+    {
+        var result =
+            await databaseContext.Set<TEntity>()
+            .FindAsync(keyValues: id);
+
+        return result;
+    }
+
     public IQueryable<TEntity> GetAll()
     {
         var result =
