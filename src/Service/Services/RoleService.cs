@@ -33,7 +33,7 @@ public class RoleService : IRoleService
     public async Task<List<ListRoleViewModel>> GetRolesAsync()
     {
         var result =
-            await repository.GetAll()
+            await repository.GetQueryable()
             .Select(current => new ListRoleViewModel
             {
                 Id = current.Id,

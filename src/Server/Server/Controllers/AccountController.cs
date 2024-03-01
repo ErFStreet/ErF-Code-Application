@@ -1,4 +1,6 @@
-﻿namespace Server.Controllers;
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace Server.Controllers;
 
 [EnableCors("Cors")]
 public class AccountController : BaseController
@@ -22,7 +24,7 @@ public class AccountController : BaseController
     [HttpPost("CreateRole")]
     public async Task<ActionResult<Response>> CreateRole(CreateRoleViewModel viewModel)
     {
-        var response = 
+        var response =
             new Response();
 
         await roleService.CreateAsync(viewModel);
@@ -86,9 +88,11 @@ public class AccountController : BaseController
 
     #region Get
     [HttpGet("Roles")]
+    [AllowAnonymous]
+    [Authorize(JwtBearerDefaults.AuthenticationScheme)]
     public async Task<ActionResult<Result<List<ListRoleViewModel>>>> Roles()
     {
-        var result = 
+        var result =
             new Result<List<ListRoleViewModel>>();
 
         result.Value =

@@ -39,7 +39,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
         return result;
     }
 
-    public IQueryable<TEntity> GetAll()
+    public IQueryable<TEntity> GetQueryable()
     {
         var result =
              databaseContext.Set<TEntity>()

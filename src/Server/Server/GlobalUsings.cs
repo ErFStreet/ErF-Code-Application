@@ -14,5 +14,11 @@ global using Domain.Instructure.Account;
 global using SoftMax.Result.Instructure;
 global using Constants.Enums;
 global using Constants;
-
-
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.IdentityModel.Tokens;
+global using System.Text;
+global using System.IdentityModel.Tokens.Jwt;
+global using Server.Instructure.Authentication;
+global using Server.Instructure.Contracts;
+global using Domain.ViewModels.User;
+global using System.Security.Claims;

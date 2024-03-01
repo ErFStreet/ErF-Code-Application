@@ -17,7 +17,7 @@ public static class RegisterAppExtension
 
         app.UseHttpsRedirection();
 
-        app.UseAuthorization();
+        app.UseAuthentication();
 
         app.MapControllers();
     }

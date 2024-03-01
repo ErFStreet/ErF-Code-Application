@@ -10,5 +10,5 @@ public interface IRepository<TEntity>
 
     Task<TEntity?> GetByIdAsync(int id);
 
-    IQueryable<TEntity> GetAll();
+    IQueryable<TEntity> GetQueryable();
 }

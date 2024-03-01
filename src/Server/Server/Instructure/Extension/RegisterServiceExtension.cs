@@ -20,9 +20,13 @@ public static class RegisterServiceExtension
 
         services.AddTransient<IRoleService, RoleService>();
 
+        services.AddTransient<IUserService, UserService>();
+
         services.AddTransient<IUnitOfWork, UnitOfWork>();
 
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
+        services.AddTransient<IAuthenticationHelper, AuthenticationHelper>();
 
         //***** Add Cors *****\\
 
@@ -43,5 +47,6 @@ public static class RegisterServiceExtension
         services.AddDbContext<DatabaseContext>
             (option => option.UseSqlServer(
                 connectionString: configuration.GetSection("DatabaseSettings")["ConnectionString"]));
+
     }
 }

@@ -1,43 +1,35 @@
 ﻿    @page "/CreateRole"
-    @inject IJSRuntime _jsRunTime
-
-    <PageTitle>ایجاد نقش</PageTitle>
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="user/css/bootstrap4-rtl.min.css">
-    <link rel="stylesheet" type="text/css" href="user/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="user/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="user/css/style.css" />
-
-</head>
-<body class="rtl">
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <h4 class="text-primary text-center">ایجاد نقش</h4>
+<PageTitle>ایجاد نقش</PageTitle>
 
 
-                <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" @bind="roleName" placeholder="نام نقش">
-                    <span class="text-center text-danger"></span>
-                </div>
 
-
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <button @onclick="CreateRoleAsync" type="button" class="login100-form-btn">ایجاد</button>
+<section class="login-area pt-150 pb-90">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-6 col-xl-7 col-lg-8">
+                <div class="login-wrapper pos-rel mb-40 wow fadeInUp">
+                    <div class=" login-inner">
+                        <div class="login-content">
+                            <h4>ایجاد نقش (Role)</h4>
+                            <form class="login-form" action="#">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="single-input-unit">
+                                            <label for="m-id">نام نقش</label>
+                                            <input type="text" @bind="roleName" placeholder="نام نقش">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="login-btn">
+                                    <button type="button" @onclick="CreateRoleAsync" class="fill-btn">ایجاد</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+</section>

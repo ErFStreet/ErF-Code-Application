@@ -10,6 +10,7 @@
     <ProjectReference Include="..\Data\Data\Data.csproj" />
     <ProjectReference Include="..\Domain\Domain\Domain.csproj" />
     <ProjectReference Include="..\Shared\Constants\Constants.csproj" />
+    <ProjectReference Include="..\Shared\SoftMax.Result\SoftMax.Result.csproj" />
   </ItemGroup>
 
 </Project>
