@@ -32,9 +32,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Layer", "Service La
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "src\Service\Service.csproj", "{1F1FFA03-6EC5-4578-A723-4148FFDB46F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Client\Application\Application\Application.csproj", "{49A7DA22-5D96-468E-90CA-7D5C92B98FD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Client\Application\Application\Application.csproj", "{49A7DA22-5D96-468E-90CA-7D5C92B98FD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftMax.Result", "src\Shared\SoftMax.Result\SoftMax.Result.csproj", "{ADD37E56-EBFD-458D-BF88-BA669926E756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftMax.Result", "src\Shared\SoftMax.Result\SoftMax.Result.csproj", "{ADD37E56-EBFD-458D-BF88-BA669926E756}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

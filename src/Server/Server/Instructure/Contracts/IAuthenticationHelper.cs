@@ -2,5 +2,5 @@
 
 public interface IAuthenticationHelper
 {
-    string GenerateJsonWebToken(ResponseUserViewModel loginResult);
+    Task<string?> GenerateJsonWebToken(ResponseUserViewModel response);
 }

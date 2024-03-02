@@ -1,4 +1,5 @@
-﻿namespace Application.Instructure.Extension;
+﻿
+namespace Application.Instructure.Extension;
 
 public static class RegisterApplicationExtension
 {
@@ -14,5 +15,7 @@ public static class RegisterApplicationExtension
             {
                 BaseAddress = new Uri("https://localhost:44389/")
             });
+
+        builder.Services.AddBlazoredLocalStorage();
     }
 }

@@ -12,6 +12,7 @@ public class DatabaseContext : DbContext
 
     public DbSet<Role>? Roles { get; set; }
 
+    public DbSet<UserToken>? UserTokens { get; set; }
     #endregion /Properties
 
     #region Methods

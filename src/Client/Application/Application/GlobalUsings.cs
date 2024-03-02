@@ -5,3 +5,4 @@ global using Domain.ViewModels.Role;
 global using System.Net.Http.Json;
 global using Application.Instructure.Extension;
 global using SoftMax.Result.Instructure;
+global using Blazored.LocalStorage;

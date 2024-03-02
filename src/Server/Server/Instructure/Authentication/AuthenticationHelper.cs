@@ -1,15 +1,26 @@
-﻿namespace Server.Instructure.Authentication;
+﻿using Domain.ViewModels.UserToken;
+
+namespace Server.Instructure.Authentication;
 
 public class AuthenticationHelper : IAuthenticationHelper
 {
+    private readonly IUserTokenService userTokenService;
+
+    private readonly IUnitOfWork unitOfWork;
+
     private IConfiguration? configuration { get; set; }
 
-    public AuthenticationHelper(IConfiguration configuration)
+    public AuthenticationHelper(IConfiguration configuration, IUserTokenService userTokenService,
+        IUnitOfWork unitOfWork)
     {
         this.configuration = configuration;
+
+        this.userTokenService = userTokenService;
+
+        this.unitOfWork = unitOfWork;
     }
 
-    public string GenerateJsonWebToken(ResponseUserViewModel response)
+    public async Task<string?> GenerateJsonWebToken(ResponseUserViewModel response)
     {
         var sercretKey =
             configuration!["JwtSettings:Key"];
@@ -40,6 +51,21 @@ public class AuthenticationHelper : IAuthenticationHelper
         var token =
             new JwtSecurityTokenHandler().WriteToken(token: securityToken);
 
-        return token;
+        var userTokenViewModel = new CreateUserTokenViewModel
+        {
+            AccessToken = token
+        };
+
+        await userTokenService.CreateAsync(viewModel: userTokenViewModel);
+
+        var result =
+            await unitOfWork.SaveChangesAsync();
+
+        if (result)
+        {
+            return token;
+        }
+
+        return null;
     }
 }
