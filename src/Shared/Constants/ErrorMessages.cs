@@ -11,4 +11,6 @@ public static class ErrorMessages
     public const string PasswordLengthError = "رمز عبور نمیتواند کمتر از 8 کاراکتر باشد";
 
     public const string NotFoundUserError = "رمز عبور یا ایمیل اشتباه است";
+
+    public const string ServerError = "مشکل ناشناخته ! بعدا امتحان کنید";
 }

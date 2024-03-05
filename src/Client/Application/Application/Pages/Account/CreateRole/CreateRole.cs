@@ -1,39 +1,31 @@
-﻿using System.Net;
+﻿using Application.Instructure.Helpers;
+using System.Net;
 
 namespace Application.Pages.Account.CreateRole;
 
 public partial class CreateRole
 {
-    private string? roleName;
+	private string? roleName;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await _jsRunTime.InvokeAsync<IJSObjectReference>("import", "./user/js/jquery-3.1.1.min.js");
+	private List<string> Messages { get; set; } = new List<string>();
 
-            await _jsRunTime.InvokeAsync<IJSObjectReference>("import", "./user/js/bootstrap.min.js");
+	private async Task CreateRoleAsync()
+	{
+		var viewModel = new CreateRoleViewModel
+		{
+			RoleName = roleName!
+		};
 
-            await _jsRunTime.InvokeAsync<IJSObjectReference>("import", "./user/js/scripts.js");
-        }
-    }
+		var url = $"api/Account/CreateRole";
 
-    private async Task CreateRoleAsync()
-    {
-        var viewModel = new CreateRoleViewModel
-        {
-            RoleName = roleName!
-        };
+		var response =
+			 await HttpHelper<Response>.Post(url, viewModel);
 
+		var statusCode = response.StatusCode;
 
-        var response =
-             await httpClient.PostAsJsonAsync("api/Account/CreateRole", viewModel);
-
-        var statusCode = response.StatusCode;
-
-        if(statusCode == HttpStatusCode.OK)
-        {
-            navigationManager.NavigateTo("/Roles");
-        }
-    }
+		if (statusCode == 200)
+		{
+			navigationManager.NavigateTo("/Roles");
+		}
+	}
 }

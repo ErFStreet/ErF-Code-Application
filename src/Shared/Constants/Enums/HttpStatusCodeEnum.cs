@@ -7,4 +7,5 @@ public enum HttpStatusCodeEnum:int
     ServerProblem = 500,
     BadRequest = 400,
     Pending = 202,
+	Unauthorized = 401,
 }

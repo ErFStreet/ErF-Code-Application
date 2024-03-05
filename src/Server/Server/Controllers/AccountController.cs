@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿namespace Server.Controllers;
 
-namespace Server.Controllers;
-
-[EnableCors("Cors")]
 public class AccountController : BaseController
 {
     #region Fields
@@ -20,7 +17,7 @@ public class AccountController : BaseController
     }
     #endregion /Constructure
 
-    #region Post
+    #region Post && Delete && Put
     [HttpPost("CreateRole")]
     public async Task<ActionResult<Response>> CreateRole(CreateRoleViewModel viewModel)
     {
@@ -49,7 +46,7 @@ public class AccountController : BaseController
         return response;
     }
 
-    [HttpGet("RemoveRole")]
+    [HttpDelete("RemoveRole")]
     public async Task<ActionResult<Response>> Remove(int id)
     {
         var respone =
@@ -84,13 +81,11 @@ public class AccountController : BaseController
 
         return respone;
     }
-    #endregion /Post
+    #endregion /Post && Delete && Put
 
     #region Get
     [HttpGet("Roles")]
-    [AllowAnonymous]
-    [Authorize(JwtBearerDefaults.AuthenticationScheme)]
-    public async Task<ActionResult<Result<List<ListRoleViewModel>>>> Roles()
+	public async Task<ActionResult<Result<List<ListRoleViewModel>>>> Roles()
     {
         var result =
             new Result<List<ListRoleViewModel>>();

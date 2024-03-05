@@ -53,7 +53,8 @@ public class AuthenticationHelper : IAuthenticationHelper
 
         var userTokenViewModel = new CreateUserTokenViewModel
         {
-            AccessToken = token
+            AccessToken = token,
+            UserId = response.Id,
         };
 
         await userTokenService.CreateAsync(viewModel: userTokenViewModel);

@@ -22,3 +22,4 @@ global using Server.Instructure.Authentication;
 global using Server.Instructure.Contracts;
 global using Domain.ViewModels.User;
 global using System.Security.Claims;
+global using System.Net;

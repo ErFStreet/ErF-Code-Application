@@ -22,5 +22,7 @@ public class User : BaseEntity<int>, IEntityHasIsSystemic, IEntityHasIsActived
 
     #region Relation
     public Role? Role { get; set; }
+
+    public IList<UserToken>? UserTokens { get; set; }
     #endregion /Relation
 }

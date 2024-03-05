@@ -3,90 +3,99 @@
 [EnableCors("Cors")]
 public class AuthenticationController : BaseController
 {
-    private readonly IAuthenticationHelper authenticationHelper;
+	private readonly IAuthenticationHelper authenticationHelper;
 
-    private readonly IUserService userService;
+	private readonly IUserService userService;
 
-    private readonly IUnitOfWork unitOfWork;
+	private readonly IUnitOfWork unitOfWork;
 
-    public AuthenticationController(IAuthenticationHelper authenticationHelper,
-        IUserService userService, IUnitOfWork unitOfWork)
-    {
-        this.authenticationHelper = authenticationHelper;
+	public AuthenticationController(IAuthenticationHelper authenticationHelper,
+		IUserService userService, IUnitOfWork unitOfWork)
+	{
+		this.authenticationHelper = authenticationHelper;
 
-        this.userService = userService;
+		this.userService = userService;
 
-        this.unitOfWork = unitOfWork;
-    }
+		this.unitOfWork = unitOfWork;
+	}
 
-    [HttpPost("Register")]
-    public async Task<ActionResult<Response>> Register(RegisterUserViewModel viewModel)
-    {
-        var response =
-            new Response();
+	[HttpPost("Register")]
+	public async Task<ActionResult<Response>> Register(RegisterUserViewModel viewModel)
+	{
+		var response =
+			new Response();
 
-        if (viewModel is null)
-        {
-            response.AddMessage(message: ResponseMessages.BadRequest);
+		if (viewModel is null)
+		{
+			response.AddMessage(message: ResponseMessages.BadRequest);
 
-            response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.BadRequest);
+			response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.BadRequest);
 
-            return response;
-        }
+			return response;
+		}
 
-        await userService.RegisterAsync(viewModel: viewModel);
+		await userService.RegisterAsync(viewModel: viewModel);
 
-        var result =
-            await unitOfWork.SaveChangesAsync();
+		var result =
+			await unitOfWork.SaveChangesAsync();
 
-        if (result)
-        {
-            response.AddMessage(message: ResponseMessages.Success);
+		if (result)
+		{
+			response.AddMessage(message: ResponseMessages.Success);
 
-            response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.Success);
+			response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.Success);
 
-            return response;
-        }
+			return response;
+		}
 
-        response.AddMessage(message: ResponseMessages.ServerError);
+		response.AddMessage(message: ResponseMessages.ServerError);
 
-        response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.ServerProblem);
+		response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.ServerProblem);
 
-        return response;
-    }
+		return response;
+	}
 
-    [HttpPost("Login")]
-    public async Task<ActionResult<Result<string>>> Login(LoginUserViewModel viewModel)
-    {
-        var response =
-             new Result<string>();
+	[HttpPost("Login")]
+	public async Task<ActionResult<Result<string>>> Login(LoginUserViewModel viewModel)
+	{
+		var response =
+			 new Result<string>();
 
-        if (viewModel is null)
-        {
-            response.AddMessage(message: ResponseMessages.BadRequest);
+		if (viewModel is null)
+		{
+			response.AddMessage(message: ResponseMessages.BadRequest);
 
-            response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.BadRequest);
+			response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.BadRequest);
 
-            return response;
-        }
+			return response;
+		}
 
-        var result =
-            await userService.LoginAsync(viewModel: viewModel);
+		var result =
+			await userService.LoginAsync(viewModel: viewModel);
 
-        if (result is null)
-        {
-            response.AddMessage(message: ResponseMessages.NotFound);
+		if (result is null)
+		{
+			response.AddMessage(message: ResponseMessages.NotFound);
 
-            response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.NotFound);
+			response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.NotFound);
 
-            return response;
-        }
+			return response;
+		}
 
-        var token =
-            authenticationHelper.GenerateJsonWebToken(loginResult: result);
+		var token =
+		   await authenticationHelper.GenerateJsonWebToken(response: result);
 
-        response.Value = token;
+		if (token is null)
+		{
+			response.AddMessage(message: ResponseMessages.ServerError);
 
-        return response;
-    }
+			response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.ServerProblem);
+
+			return response;
+		}
+
+		response.Value = token;
+
+		return response;
+	}
 }

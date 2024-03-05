@@ -2,35 +2,36 @@
 
 public class UserTokenService : IUserTokenService
 {
-    private readonly IRepository<UserToken> repository;
+	private readonly IRepository<UserToken> repository;
 
-    public UserTokenService(IRepository<UserToken> repository)
-    {
-        this.repository = repository;
-    }
+	public UserTokenService(IRepository<UserToken> repository)
+	{
+		this.repository = repository;
+	}
 
-    public async Task CreateAsync(CreateUserTokenViewModel viewModel)
-    {
-        if (viewModel == null)
-            throw new ArgumentNullException(nameof(viewModel));
+	public async Task CreateAsync(CreateUserTokenViewModel viewModel)
+	{
+		if (viewModel == null)
+			throw new ArgumentNullException(nameof(viewModel));
 
-        var userToken =
-            new UserToken
-            {
-                AccessTokenHash = viewModel.AccessToken,
-            };
+		var userToken =
+			new UserToken
+			{
+				AccessTokenHash = viewModel.AccessToken,
+				UserId = viewModel.UserId,
+			};
 
-        await repository.CreateAsync(entity: userToken);
-    }
+		await repository.CreateAsync(entity: userToken);
+	}
 
-    public async Task<string?> GetTokenByUserId(int userId)
-    {
-        var result =
-            await repository.GetQueryable()
-            .Where(current => current.UserId == userId)
-            .Select(current => current.AccessTokenHash)
-            .FirstOrDefaultAsync();
+	public bool GetTokenByUserId(int userId, string token)
+	{
+		var result =
+			 repository.GetQueryable()
+			.Where(current => current.UserId == userId)
+			.Where(current => current.AccessTokenHash == token)
+			.Any();
 
-        return result;
-    }
+		return result;
+	}
 }

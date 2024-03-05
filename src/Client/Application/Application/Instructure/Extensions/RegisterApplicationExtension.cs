@@ -9,12 +9,7 @@ public static class RegisterApplicationExtension
 
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
-        builder.Services
-            .AddScoped
-            (sp => new HttpClient
-            {
-                BaseAddress = new Uri("https://localhost:44389/")
-            });
+        builder.Services.AddScoped<HttpClient>();
 
         builder.Services.AddBlazoredLocalStorage();
     }

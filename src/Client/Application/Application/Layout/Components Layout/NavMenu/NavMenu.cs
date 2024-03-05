@@ -48,7 +48,7 @@ public partial class NavMenu
 
             await _jsRunTime.InvokeAsync<IJSObjectReference>("import", "./assets/js/main.js");
 
-            await module!.InvokeVoidAsync(identifier: "DOMCleanup.createObserver");
+            await _jsRunTime.InvokeVoidAsync("");
         }
     }
 }

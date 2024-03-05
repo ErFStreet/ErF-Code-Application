@@ -7,4 +7,6 @@ public class CreateUserTokenViewModel : object
     }
 
     public required string AccessToken { get; set; }
+
+    public int UserId { get; set; }
 }

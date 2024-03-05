@@ -30,6 +30,8 @@ public static class RegisterServiceExtension
 
         services.AddTransient<IAuthenticationHelper, AuthenticationHelper>();
 
+        services.AddTransient<IValidateTokenHelper, ValidateTokenHelper>();
+
         //***** Add Cors *****\\
 
         services.AddCors(options =>

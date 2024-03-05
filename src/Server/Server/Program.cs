@@ -2,27 +2,29 @@ namespace Server;
 
 public class Program
 {
-    public static void Main(string[] args)
-    {
-        //***** Builder *****\\
+	public static void Main(string[] args)
+	{
+		//***** Builder *****\\
 
-        var builder = WebApplication.CreateBuilder(args);
+		var builder = WebApplication.CreateBuilder(args);
 
-        //***** Register Services *****\\
+		//***** Register Services *****\\
 
-        builder.Services.RegisterServices(
-            configuration: builder.Configuration);
+		builder.Services.RegisterServices(
+			configuration: builder.Configuration);
 
-        //***** Build *****\\
+		builder.Services.RegisterJwt(configuration: builder.Configuration);
 
-        var app = builder.Build();
+		//***** Build *****\\
 
-        //***** Register Application *****\\
+		var app = builder.Build();
 
-        app.RegisterApplication();
+		//***** Register Application *****\\
 
-        //***** APP Run *****\\
+		app.RegisterApplication();
 
-        app.Run();
-    }
+		//***** APP Run *****\\
+
+		app.Run();
+	}
 }

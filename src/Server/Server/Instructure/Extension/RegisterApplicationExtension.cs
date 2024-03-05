@@ -19,6 +19,8 @@ public static class RegisterAppExtension
 
         app.UseAuthentication();
 
+        app.UseAuthorization();
+
         app.MapControllers();
     }
 }

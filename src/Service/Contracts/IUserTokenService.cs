@@ -4,5 +4,5 @@ public interface IUserTokenService
 {
     Task CreateAsync(CreateUserTokenViewModel viewModel);
 
-    Task<string?> GetTokenByUserId(int userId);
+	bool GetTokenByUserId(int userId, string token);
 }
