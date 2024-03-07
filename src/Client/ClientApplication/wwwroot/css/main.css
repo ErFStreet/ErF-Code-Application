@@ -1,0 +1,80 @@
+/*Styles*/
+
+body {
+    background-color: rgb(50, 17, 92);
+    font-family: 'iranyekanbold';
+}
+
+.skill-box{
+    direction:ltr;
+    color:white;
+}
+
+.about-p{
+    font-size:15px;
+}
+
+.head {
+    text-align: center;
+    color: rgb(228, 204, 18);
+    margin-top: 15px;
+}
+
+li{
+    margin-top:10px;
+}
+
+.about-box{
+    color:white;
+    margin-top:70px;
+}
+
+.about-image {
+    width: 200px;
+    border-radius: 12px;
+    margin-bottom:10px;
+}
+
+.contact-me {
+    text-align: center;
+}
+
+.link-button {
+    background-color: rgb(18, 11, 73)
+}
+
+.about-projects {
+    margin: 30px;
+    color: white;
+    direction: ltr;
+}
+
+.image {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.box-parent {
+    margin: 30px;
+}
+
+.icon {
+    width: 25px;
+}
+
+.bt-link {
+    margin-bottom: 10px;
+}
+
+/*Hovers*/
+.image:hover {
+    opacity: 0.5;
+}
+
+/*Fonts*/
+
+@font-face {
+    font-family: 'iranyekanbold';
+    src: url('../fonts/iranyekanwebboldfanum.ttf');
+}
