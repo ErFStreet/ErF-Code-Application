@@ -7,9 +7,13 @@
     background-color: rgb(47, 20, 68);
 }
 
+.auth{
+    margin-right:50px;
+}
+
 .menu-icon {
     margin-right: 50px;
-    margin-left:3px;
+    margin-left: 3px;
 }
 
 .logo-image {

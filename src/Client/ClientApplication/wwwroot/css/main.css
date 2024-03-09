@@ -5,13 +5,52 @@ body {
     font-family: 'iranyekanbold';
 }
 
-.skill-box{
-    direction:ltr;
-    color:white;
+.role-box {
+    text-align: center;
 }
 
-.about-p{
-    font-size:15px;
+.input {
+    border-radius: 12px;
+    width: 320px;
+}
+
+.skill-box {
+    background-color: rgb(95, 76, 157);
+    margin: 30px;
+    border-radius: 5px;
+    border: groove 5px rgb(23, 193, 32);
+}
+
+.skill-link{
+    margin-right:80px;
+    margin-bottom:10px;
+}
+
+.skill-title {
+    color: white;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+.skill-image {
+    width: 100%;
+}
+
+.parent-skill-box{
+    background-color:rgb(86, 66, 109);
+    border-radius:10px;
+}
+
+.box-image {
+    width: 80%;
+    margin: 40px;
+    border: groove 5px black;
+    border-radius: 12px;
+}
+
+.about-p {
+    font-size: 15px;
 }
 
 .head {
@@ -20,19 +59,28 @@ body {
     margin-top: 15px;
 }
 
-li{
-    margin-top:10px;
+li {
+    margin-top: 10px;
 }
 
-.about-box{
-    color:white;
-    margin-top:70px;
+.about-text{
+    padding:35px;
+}
+
+.about-box {
+    color: rgb(255, 255, 255);
+    margin-top: 70px;
+    border-radius: 12px;
+    border:groove 5px black;
+    background-color: rgb(36, 28, 52);
 }
 
 .about-image {
     width: 200px;
     border-radius: 12px;
-    margin-bottom:10px;
+    margin: 20px;
+    border: groove 5px black;
+    margin-bottom: 10px;
 }
 
 .contact-me {
@@ -67,8 +115,21 @@ li{
     margin-bottom: 10px;
 }
 
+
+/* Set a style for the submit button */
+
+
+.btn:hover {
+    opacity: 1;
+}
+
+
 /*Hovers*/
 .image:hover {
+    opacity: 0.5;
+}
+
+.about-image:hover {
     opacity: 0.5;
 }
 
