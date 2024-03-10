@@ -9,6 +9,7 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Data.Configurations.Account;
 global using Data.Contracts;
 global using Data.Contracts.Base;
+global using Domain.Instructure.Other;
 
 
 

@@ -7,3 +7,6 @@ global using Constants.Enums;
 global using Domain.ViewModels.User;
 global using Microsoft.EntityFrameworkCore;
 global using Domain.ViewModels.UserToken;
+global using Domain.Instructure.Other;
+global using Domain.ViewModels.Blog;
+
