@@ -23,3 +23,4 @@ global using Server.Instructure.Contracts;
 global using Domain.ViewModels.User;
 global using System.Security.Claims;
 global using System.Net;
+global using Domain.ViewModels.Blog;

@@ -21,6 +21,9 @@ public class AccountController : BaseController
     [HttpPost("CreateRole")]
     public async Task<ActionResult<Response>> CreateRole(CreateRoleViewModel viewModel)
     {
+        if(viewModel is null)
+            throw new ArgumentNullException(nameof(viewModel));
+
         var response =
             new Response();
 

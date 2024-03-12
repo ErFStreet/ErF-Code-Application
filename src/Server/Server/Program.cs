@@ -2,7 +2,7 @@ namespace Server;
 
 public class Program
 {
-	public static void Main(string[] args)
+	public static async void Main(string[] args)
 	{
 		//***** Builder *****\\
 
@@ -18,6 +18,8 @@ public class Program
 		//***** Build *****\\
 
 		var app = builder.Build();
+
+		await app.Initialize();
 
 		//***** Register Application *****\\
 
