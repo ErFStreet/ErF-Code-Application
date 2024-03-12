@@ -6,5 +6,5 @@ public class DetailBlogViewModel
 
     public required string Description { get; set; }
 
-    public required string PathImage { get; set; }
+    public required string ImageUrl { get; set; }
 }

@@ -13,7 +13,7 @@ public class Blog : BaseEntity<int>, IEntityHasIsDeleted
 
     public required string ShortDescription { get; set; }
 
-    public required string ImagePath { get; set; }
+    public required string ImageUrl { get; set; }
 
     public DateTime CreatedDateTime { get; set; } = DateTime.Now;
 

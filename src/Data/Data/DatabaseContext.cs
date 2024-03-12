@@ -14,6 +14,9 @@ public class DatabaseContext : DbContext
 
     public DbSet<Blog>? Blogs { get; set; }
 
+    public DbSet<Music>? Musics { get; set; }
+
+
     public DbSet<UserToken>? UserTokens { get; set; }
     #endregion /Properties
 

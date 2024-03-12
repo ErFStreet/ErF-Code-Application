@@ -12,7 +12,7 @@ public class CreateBlogViewModel
 
     public required string ShortDescription { get; set; }
 
-    public required string ImagePath { get; set; }
+    public required string ImageUrl { get; set; }
 
     public bool IsDeleted { get; set; }
 }

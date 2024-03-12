@@ -5,20 +5,15 @@ body {
     font-family: 'iranyekanbold';
 }
 
-.role-box {
-    text-align: center;
-}
-
 .input {
     border-radius: 12px;
     width: 320px;
 }
 
 .skill-box {
-    background-color: rgb(95, 76, 157);
+    background-color: rgb(128, 128, 128);
     margin: 30px;
     border-radius: 5px;
-    border: groove 5px rgb(23, 193, 32);
 }
 
 .skill-link{
@@ -27,14 +22,16 @@ body {
 }
 
 .skill-title {
-    color: white;
-    margin-bottom: 30px;
+    color: rgb(255, 255, 255);
+    box-shadow:white 0px 0 10px;
+    margin: 30px;
     text-align: center;
 }
 
 
 .skill-image {
     width: 100%;
+    padding:20px;
 }
 
 .parent-skill-box{
@@ -116,15 +113,8 @@ li {
 }
 
 
-/* Set a style for the submit button */
-
-
-.btn:hover {
-    opacity: 1;
-}
-
-
 /*Hovers*/
+
 .image:hover {
     opacity: 0.5;
 }

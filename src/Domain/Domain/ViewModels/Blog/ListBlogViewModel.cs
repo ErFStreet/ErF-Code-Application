@@ -14,7 +14,7 @@ public class ListBlogViewModel
 
     public required string ShortDescription { get; set; }
 
-    public required string ImagePath { get; set; }
+    public required string ImageUrl { get; set; }
 
     public DateTime CreatedDateTime { get; set; }
 

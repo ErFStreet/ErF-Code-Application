@@ -9,4 +9,4 @@ global using Microsoft.EntityFrameworkCore;
 global using Domain.ViewModels.UserToken;
 global using Domain.Instructure.Other;
 global using Domain.ViewModels.Blog;
-
+global using Domain.ViewModels.Music;

@@ -24,6 +24,8 @@ public static class RegisterServiceExtension
 
         services.AddTransient<IUserTokenService, UserTokenService>();
 
+        services.AddTransient<IBlogService, BlogService>();
+
         services.AddTransient<IUnitOfWork, UnitOfWork>();
 
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));

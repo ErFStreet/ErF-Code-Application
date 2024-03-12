@@ -18,7 +18,7 @@ public class BlogService : IBlogService
         {
             ShortDescription = viewModel.ShortDescription,
             Description = viewModel.Description,
-            ImagePath = viewModel.ImagePath,
+            ImageUrl = viewModel.ImageUrl,
         };
 
         await repository.CreateAsync(entity: blog);
@@ -39,7 +39,7 @@ public class BlogService : IBlogService
                 ShortDescription = current.ShortDescription,
                 Description = current.Description,
                 IsDeleted = current.IsDeleted,
-                ImagePath = current.ImagePath,
+                ImageUrl = current.ImageUrl,
             })
             .FirstOrDefaultAsync();
 
@@ -62,7 +62,7 @@ public class BlogService : IBlogService
 
         blog!.IsDeleted = viewModel.IsDeleted;
 
-        blog!.ImagePath = viewModel.ImagePath;
+        blog!.ImageUrl = viewModel.ImageUrl;
 
         repository.Update(entity: blog);
     }
@@ -93,7 +93,7 @@ public class BlogService : IBlogService
             {
                 Title = current.Title,
                 Description = current.Description,
-                PathImage = current.ImagePath,
+                ImageUrl = current.ImageUrl,
             })
             .FirstOrDefaultAsync();
 
@@ -112,7 +112,7 @@ public class BlogService : IBlogService
                 ShortDescription = current.ShortDescription,
                 Description = current.Description,
                 CreatedDateTime = current.CreatedDateTime,
-                ImagePath = current.ImagePath,
+                ImageUrl = current.ImageUrl,
             })
             .ToListAsync();
 
