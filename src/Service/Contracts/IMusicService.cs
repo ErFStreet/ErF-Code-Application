@@ -10,5 +10,5 @@ public interface IMusicService
 
     Task DeleteAsync(int id);
 
-    Task<List<ListMusicViewModel>> GetAll();
+    Task<List<ListMusicViewModel>> GetAllAsync();
 }

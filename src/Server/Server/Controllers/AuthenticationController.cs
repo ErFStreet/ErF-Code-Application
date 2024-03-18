@@ -20,7 +20,7 @@ public class AuthenticationController : BaseController
 	}
 
 	[HttpPost("Register")]
-	public async Task<ActionResult<Response>> Register(RegisterUserViewModel viewModel)
+	public async Task<ActionResult<Response>> Register([FromBody] RegisterUserViewModel viewModel)
 	{
 		var response =
 			new Response();
@@ -56,7 +56,7 @@ public class AuthenticationController : BaseController
 	}
 
 	[HttpPost("Login")]
-	public async Task<ActionResult<Result<string>>> Login(LoginUserViewModel viewModel)
+	public async Task<ActionResult<Result<string>>> Login([FromBody] LoginUserViewModel viewModel)
 	{
 		var response =
 			 new Result<string>();

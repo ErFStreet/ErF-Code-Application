@@ -19,7 +19,7 @@ public class AccountController : BaseController
 
     #region Post && Delete && Put
     [HttpPost("CreateRole")]
-    public async Task<ActionResult<Response>> CreateRole(CreateRoleViewModel viewModel)
+    public async Task<ActionResult<Response>> CreateRole([FromBody] CreateRoleViewModel viewModel)
     {
         if(viewModel is null)
             throw new ArgumentNullException(nameof(viewModel));

@@ -77,10 +77,11 @@ public class MusicService : IMusicService
         repository.Remove(entity: music);
     }
 
-    public async Task<List<ListMusicViewModel>> GetAll()
+    public async Task<List<ListMusicViewModel>> GetAllAsync()
     {
         var result =
             await repository.GetQueryable()
+            .AsNoTracking()
             .Where(current => !current.IsDeleted)
             .Select(current => new ListMusicViewModel
             {

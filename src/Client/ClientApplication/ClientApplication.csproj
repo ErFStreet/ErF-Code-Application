@@ -20,4 +20,8 @@
     <ProjectReference Include="..\..\Shared\SoftMax.Result\SoftMax.Result.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Account\" />
+  </ItemGroup>
+
 </Project>

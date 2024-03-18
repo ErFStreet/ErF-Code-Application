@@ -2,16 +2,40 @@
 
 public static class InitializeDatabase
 {
-    public static async Task Initialize(this IApplicationBuilder builder)
+    public static void Initialize(this IApplicationBuilder builder)
     {
         using var scope = builder.ApplicationServices.CreateScope();
 
         var database =
             scope.ServiceProvider.GetRequiredService<DatabaseContext>();
 
+        var anyRole =
+            database.Roles!
+            .Any();
+
+        if (!anyRole)
+        {
+            var roles = new List<string>()
+            {
+                RoleNames.Admin,
+                RoleNames.User,
+                RoleNames.Vip,
+            };
+
+            foreach(var item in roles)
+            {
+                var role = 
+                    new Role(roleName: item);
+
+                database.Add(entity: role);
+            }
+
+            database.SaveChanges();
+        }
+
         var anyUser =
-            await database.Users!
-             .AnyAsync();
+             database.Users!
+             .Any();
 
         if (anyUser)
             return;
@@ -25,8 +49,8 @@ public static class InitializeDatabase
             HashedPassword = "Nayanaya48@",
         };
 
-        await database.Users!.AddAsync(entity: user);
+        database.Users!.Add(entity: user);
 
-        await database.SaveChangesAsync();
+        database.SaveChanges();
     }
 }

@@ -1,28 +1,26 @@
-﻿namespace Server.Controllers;
+﻿using Domain.ViewModels.Music;
 
-public class BlogController : BaseController
+namespace Server.Controllers;
+
+public class MusicController : BaseController
 {
-    #region Properties
-    private readonly IBlogService blogService;
+    private readonly IMusicService musicService;
 
     private readonly IUnitOfWork unitOfWork;
-    #endregion /Properties
 
-    #region Contracture
-    public BlogController(IBlogService blogService, IUnitOfWork unitOfWork)
+    public MusicController(IMusicService musicService, IUnitOfWork unitOfWork)
     {
-        this.blogService = blogService;
+        this.musicService = musicService;
+
         this.unitOfWork = unitOfWork;
     }
-    #endregion /Contracture
 
-    #region Post & Put & Delete
-    [HttpPost("CreateBlog")]
-    public async Task<ActionResult<Response>> Create([FromBody] CreateBlogViewModel viewModel)
+    [HttpPost("CreateMusic")]
+    public async Task<ActionResult<Response>> Create([FromBody] CreateMusicViewModel viewModel)
     {
         var response = new Response();
 
-        await blogService.CreateAsync(viewModel: viewModel);
+        await musicService.CreateAsync(viewModel: viewModel);
 
         var result =
             await unitOfWork.SaveChangesAsync();
@@ -43,12 +41,12 @@ public class BlogController : BaseController
         return response;
     }
 
-    [HttpPut("EditBlog")]
-    public async Task<ActionResult<Response>> Edit([FromBody] EditBlogViewModel viewModel)
+    [HttpPut("EditMusic")]
+    public async Task<ActionResult<Response>> Edit([FromBody] EditMusicViewModel viewModel)
     {
         var response = new Response();
 
-        await blogService.EditAsync(viewModel: viewModel);
+        await musicService.EditAsync(viewModel: viewModel);
 
         var result =
             await unitOfWork.SaveChangesAsync();
@@ -69,12 +67,12 @@ public class BlogController : BaseController
         return response;
     }
 
-    [HttpDelete("DeleteBlog")]
+    [HttpDelete("DeleteMusic")]
     public async Task<ActionResult<Response>> Delete(int id)
     {
         var response = new Response();
 
-        await blogService.DeleteAsync(id: id);
+        await musicService.DeleteAsync(id: id);
 
         var result =
             await unitOfWork.SaveChangesAsync();
@@ -94,46 +92,43 @@ public class BlogController : BaseController
 
         return response;
     }
-    #endregion /Post & Put & Delete
 
-    #region Get
-    [HttpGet("Edit")]
-    public async Task<ActionResult<Result<EditBlogViewModel>>> GetEdit(int id)
+    [HttpGet("Musics")]
+    public async Task<ActionResult<Result<List<ListMusicViewModel>>>> Musics()
     {
-        var response = new Result<EditBlogViewModel>();
+        var response = new Result<List<ListMusicViewModel>>();
 
-        var result =
-            await blogService.GetBlogForEditByIdAsync(id: id);
+        response.Value =
+            await musicService.GetAllAsync();
 
-        if(result is null)
+        response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.Success);
+
+        response.AddMessage(message: ResponseMessages.Success);
+
+        return response;
+    }
+
+    [HttpGet("EditMusic")]
+    public async Task<ActionResult<Result<EditMusicViewModel>>> GetEdit(int id)
+    {
+        var response = new Result<EditMusicViewModel>();
+
+        var music =
+            await musicService.GetMusicForEditById(id: id);
+
+        if (music is null)
         {
             response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.NotFound);
 
             response.AddMessage(message: ResponseMessages.NotFound);
         }
 
-        response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.Success);
-
-        response.AddMessage(message: ResponseMessages.Success);
-
-        response.Value = result;
-
-        return response;
-    }
-
-    [HttpGet("Blogs")]
-    public async Task<ActionResult<Result<List<ListBlogViewModel>>>> Blogs()
-    {
-        var response = new Result<List<ListBlogViewModel>>();
+        response.Value = music;
 
         response.ChangeStatusCode(httpStatusCode: HttpStatusCodeEnum.Success);
 
         response.AddMessage(message: ResponseMessages.Success);
 
-        response.Value =
-            await blogService.GetAllAsync();
-
         return response;
     }
-    #endregion /Get
 }

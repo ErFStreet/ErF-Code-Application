@@ -34,6 +34,7 @@ public class RoleService : IRoleService
     {
         var result =
             await repository.GetQueryable()
+            .AsNoTracking()
             .Select(current => new ListRoleViewModel
             {
                 Id = current.Id,

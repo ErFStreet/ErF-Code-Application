@@ -104,6 +104,7 @@ public class BlogService : IBlogService
     {
         var result =
             await repository.GetQueryable()
+            .AsNoTracking()
             .Where(current => !current.IsDeleted)
             .Select(current => new ListBlogViewModel
             {
