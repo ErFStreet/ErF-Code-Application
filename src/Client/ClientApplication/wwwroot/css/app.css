@@ -104,9 +104,17 @@ code {
     color: #c02d76;
 }
 
+.icon-contact{
+    color:white;
+}
+
+.contact-link {
+    font-size: 30px;
+    margin-right:20px;
+}
 
 
 @font-face {
     font-family: 'iranyekanbold';
-    src: url('../fonts/iranyekanwebboldfanum.ttf') format('truetype'), 
+    src: url('../fonts/iranyekanwebboldfanum.ttf') format('truetype'),
 }
