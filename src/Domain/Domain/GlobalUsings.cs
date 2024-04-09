@@ -4,8 +4,8 @@ global using System.Linq;
 global using System.Text;
 global using System.Threading.Tasks;
 global using System.ComponentModel.DataAnnotations;
-global using Domain.Instructure.Base;
+global using Domain.Infrastructure.Base;
 global using System.ComponentModel.DataAnnotations.Schema;
-global using Domain.Instructure.SeedWork;
+global using Domain.Infrastructure.SeedWork;
 
 
